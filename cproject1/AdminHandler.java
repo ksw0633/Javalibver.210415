@@ -1,10 +1,10 @@
-package cproject;
+package cproject1;
+
 import java.util.*;
 import java.util.regex.Pattern;
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 /**
  * AdminHandler´Â admin°ú user¸¦ ±â¹İÀ¸·Î ¸¸µç Controller class ÀÔ´Ï´Ù.
@@ -37,38 +37,73 @@ import java.util.TimerTask;
  *
  */
 
+
+
 public class AdminHandler {
-	
-	//Scanner¸¦ ÅëÇÏ¿© »ç¿ëÀÚ°¡ °ªÀ» ÀÔ·ÂÇÒ ¼ö ÀÖ°Ô µµ¿ÍÁİ´Ï´Ù.
-	Scanner s;
-	
-	//LoginCnt¸¦ ÅëÇØ ·Î±×ÀÎ ¿©ºÎ¸¦ È®ÀÎÇÕ´Ï´Ù.1ÀÌ¸é ·Î±×ÀÎ¼º°ø, 0ÀÌ¸é ·Î±×¾Æ¿ô
-	public int LoginCnt = 0;
-	
-	//AdminCheck¸¦ ÅëÇØ °ü¸®ÀÚ ¿©ºÎ ÆÇ´ÜÇÕ´Ï´Ù. 0ÀÌ¸é °ü¸®ÀÚ ¾Æ´Ô, 1ÀÌ¸é °ü¸®ÀÚ
-	public int AdminCheck;
-	
-	//User¸¦ »ı¼ºÇÏ¿© User class°¡ »ç¿ë °¡´ÉÇÏµµ·Ï ¸¸µé¾î Áİ´Ï´Ù.
-	User u = new User();
-	
-	//º¤ÅÍ¸¦ ÀÌ¿ëÇÏ¿© User¿Í User¿¡ »ó¼ÓµÈ °ªÀ»(Admin,Employee) »ç¿ë ÇÒ ¼ö ÀÖ°Ô ÇÕ´Ï´Ù. 
-	Vector<User> v = new Vector<User>();
-	
-	
-	ReadingRoom rent = new ReadingRoom(); 
-	String adminID = "admin";
-	String adminPW = "admin";
-	String employeeID = "emp";
-	String employeePW = "emp";
-	
-	public static int count;
-	Date date = new Date();
-	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	Timer timer = new Timer();
-	Calendar cal = Calendar.getInstance();
 	
 	
 	/**
+	 *Scanner¸¦ ÅëÇÏ¿© »ç¿ëÀÚ°¡ °ªÀ» ÀÔ·ÂÇÒ ¼ö ÀÖ°Ô µµ¿ÍÁİ´Ï´Ù. 
+	 */
+	
+	
+	Scanner s;
+	
+	
+	/**
+	 *LoginCnt¸¦ ÅëÇØ ·Î±×ÀÎ ¿©ºÎ¸¦ È®ÀÎÇÕ´Ï´Ù.1ÀÌ¸é ·Î±×ÀÎ¼º°ø, 0ÀÌ¸é ·Î±×¾Æ¿ô 
+	 */
+	
+	public int LoginCnt = MenuNum.logOut;
+	
+	
+	/**
+	 *AdminCheck¸¦ ÅëÇØ °ü¸®ÀÚ ¿©ºÎ ÆÇ´ÜÇÕ´Ï´Ù. 0ÀÌ¸é °ü¸®ÀÚ ¾Æ´Ô, 1ÀÌ¸é °ü¸®ÀÚ 
+	 */
+	
+	public int AdminCheck;
+	
+	
+	/**
+	 *User¸¦ »ı¼ºÀÚ¸¦ È£ÃâÇÏ¿© User classÀÇ ¸ğµç º¯¼ö¸¦ »ç¿ë °¡´ÉÇÏµµ·Ï ¸¸µé¾î Áİ´Ï´Ù. 
+	 */
+
+	User u = new User();
+
+	
+	/**
+	 * º¤ÅÍ¸¦ ÀÌ¿ëÇÏ¿© User¿Í User¿¡ »ó¼ÓµÈ °ªÀ»(Admin,Employee) »ç¿ë ÇÒ ¼ö ÀÖ°Ô ÇÕ´Ï´Ù. 
+	 */
+	
+	Vector<User> v = new Vector<User>();
+	
+
+	/**
+	 * ReadingRoomÀ» »ı¼ºÀÚ·Î È£ÃâÇÏ¿© µµ¼­°üÀÇ ´ë¿©¸¦ µ½´Â ReadingRoom class¸¦ »ç¿ë°¡´ÉÇÏ°Ô ÇØÁİ´Ï´Ù.
+	 */
+	
+	ReadingRoom rent = new ReadingRoom(); 
+	
+	/**
+	 * ReadingRoom¸¦ ¹è¿­À¸·Î ÀçÈ£ÃâÇÏ¿© °¢ ¹è¿­°ªÀ¸·Î ³Ö¾îÁİ´Ï´Ù.
+	 */
+	ReadingRoom[] r1 = new ReadingRoom[200];
+	
+//	public String adminID = "admin";
+//	public String adminPW = "admin";
+//	public String employeeID = "emp";
+//	public String employeePW = "emp";	
+	
+	/**
+	 * 
+	 */
+	public static String timerBuffer;
+	Date date = new Date();
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public static int count;
+    Timer timer = new Timer();
+    Calendar cal = Calendar.getInstance();
+    /**
 	 * µğÆúÆ® »ı¼ºÀÚ 
 	 * <br>Scanner¸¦ »ı¼ºÇØ ÁÖ¾ú½À´Ï´Ù.
 	 */
@@ -80,11 +115,11 @@ public class AdminHandler {
 	 * CheckAD¸¦ ÅëÇØ °ü¸®ÀÚÀÎÁö ¾Æ´ÑÁö ÀÔ·Â°ªÀ» ÅëÇÏ¿© È®ÀÎÇÕ´Ï´Ù.
 	 * @return AdminCheck °ü¸®ÀÚ¿©ºÎ È®ÀÎ
 	 */
-	int CheckAD() {
+	
+	public int CheckAD() {
 		AdminCheck = Integer.parseInt(s.nextLine());
 		return AdminCheck;
 	}
-	
 	/**
 	 * LoginÀº °ü¸®ÀÚ¿Í Á÷¿øÀÇ ·Î±×ÀÎÀ» µ½´Â ÇÔ¼öÀÔ´Ï´Ù.
 	 * {@link #v}User¸¦ º¤ÅÍ·Î ¹Ş¾Æ¿Í Admin°ú Employee¸¦ ÀÔÃô·ÂÇÏ´Â °ªÀÔ´Ï´Ù.
@@ -97,7 +132,8 @@ public class AdminHandler {
 	 * @param u User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼ö
 	 * @return 1 ·Î±×ÀÎ °ªÀÌ ÀúÀåµË´Ï´Ù.
 	 */
-	int Login(User u) {
+	
+	public int Login(User u) {
 
 		while(true)
 		{
@@ -106,42 +142,28 @@ public class AdminHandler {
 			System.out.print(" PW¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
 			String PW = s.nextLine();
 
-			if(ID.equals(adminID)&&PW.equals(adminPW)||ID.equals(employeeID)&&PW.equals(employeePW)) {
+			if(ID.equals(MenuNum.aId)&&PW.equals(MenuNum.aPw)||ID.equals(MenuNum.eId)&&PW.equals(MenuNum.aPw)) {
 				System.out.println("·Î±×ÀÎ ¼º°ø");break;
 			}else
 				System.out.println("ÀÔ·ÂÇÏ½Å ID¿Í PW°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");		
 				}
-			
-			
-		LoginCnt = 1;
+		LoginCnt = MenuNum.logIn;
 		return LoginCnt;
 		
 	}
-	
+
 	/**
-	 * LogoutÀº ·Î±×¾Æ¿ôÀ» µ½´Â ÇÔ¼öÀÔ´Ï´Ù.
-	 * ·Î±×¾Æ¿ôÀ» ¿øÇÒ ¶§ ·Î±×¾Æ¿ôÀÌ µÇ¸é¼­ LoginCnt°¡ 0À¸·Î º¯°æµË´Ï´Ù.
-	 * <br>·Î±×ÀÎ¿¡¼­ÀÇ ¿ä±¸ »çÇ×À¸·Î ÀÎÇØ ·Î±×¾Æ¿ô ¶ÇÇÑ ´Ü¼øÈ÷ ·Î±×¾Æ¿ôÀÌ µÇ°í Ä«¿îÅÍ°¡ ³»·Á°¡´Â ¹æ½ÄÀ¸·Î ±¸¼ºÇß½À´Ï´Ù.
-	 * 
-	 */
-	void Logout() {
-		System.out.println("·Î±×¾Æ¿ô µÇ¾ú½À´Ï´Ù.");
-		LoginCnt = 0;
-	}
-	
-	/**
-	 * LoginÀº °ü¸®ÀÚ¿Í Á÷¿øÀÇ ·Î±×ÀÎÀ» µ½´Â ÇÔ¼öÀÔ´Ï´Ù.
-	 * {@link #v}User¸¦ º¤ÅÍ·Î ¹Ş¾Æ¿Í Admin°ú Employee¸¦ ÀÔÃô·ÂÇÏ´Â °ªÀÔ´Ï´Ù.
-	 * trueÀÎ µ¿¾È 
-	 * »ç¿ëÀÚ°¡ ID¿Í PW¸¦ ÀÔ·ÂÇÕ´Ï´Ù.
-	 * ¸¸¾à¿¡ ID°¡ adminID¿Í °°°Å³ª employeeID¿Í °°°í, 
-	 * PW°¡ adminPW¿Í °°°Å³ª employeePW¿Í °°Àº°æ¿ì¿¡ ·Î±×ÀÎ ¼º°ø ¸àÆ®¸¦ ¶ç¿î ÈÄ break¸¦ ÅëÇØ ¸ØÃä´Ï´Ù.
-	 * <br> ±×·¸Áö ¾ÊÀº °æ¿ì¿¡´Â ÀÔ·ÂÇÏ½Å ID¿Í PW°¡ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.¶ó°í ¸àÆ®¸¦ ³¯¸° ÈÄ break¸¦ ·ÇØ ¸ØÃä´Ï´Ù.
-	 * break½ÇÇàÀÌ ³¡ÀÌ ³ª¸é  ·Î±×ÀÎÀ» ¶æÇÏ´Â LoginCnt¿¡ 1À» ´ëÀÔÇØ Áİ´Ï´Ù.
+	 * userLogin´Â À¯ÀúÀÇ ·Î±×ÀÎÀ» µ½´Â ÇÔ¼öÀÔ´Ï´Ù.
+	 * {@link #v}User¸¦ º¤ÅÍ·Î ¹Ş¾Æ¿É´Ï´Ù.
+	 *  »ç¿ëÀÚ°¡ ID¿Í PW¸¦ ÀÔ·ÂÇÕ´Ï´Ù.
+	 *  ¸¸¾à¿¡ ID¿ÍPW°¡ {@link #registerUser(User)}¿¡ ÀÔ·ÂÇß´ø
+	 *   ID¿ÍPW¶û µ¿ÀÏÇÏ´Ù¸é "·Î±×ÀÎ ¼º°ø"À» ÇÁ¸°Æ®ÇÑ ÈÄ LoginCnt¿¡ 1À» ´ëÀÔÇØ ÁÖ°í break·Î ¸ØÃç Áİ´Ï´Ù.   
+	 *   <br>±×·¸Áö ¾Ê´Â °æ¿ì¿¡´Â "µî·ÏµÇÁö ¾ÊÀº »ç¿ëÀÚÀÔ´Ï´Ù. È¸¿ø°¡ÀÔÀ» ½ÃÀÛÇÕ´Ï´Ù." ¸àÆ®¸¦ ÇÁ¸°Æ®ÇÑ ÈÄ
+	 *   LoginCnt¿¡ 0À» ´ëÀÔÇØ ÁÖ°í °¡ÀÔÇÔ¼öÀÎ {@link #registerUser(User)}¿¡ ³Ñ¾î°¡°í break·Î ¸ØÃç Áİ´Ï´Ù.
+	 *   <br>ÇÏ³ªÀÇ ÄÄÇ»ÅÍ´ç ÇÏ³ªÀÇ ·Î±×ÀÎ¸¸ °¡´ÉÇÏ±â ¶§¹®¿¡ ÇÑ¹øÀÇ ·Î±×ÀÎ¸¸ Çã¿ëÇÏ°Ô ¸¸µé¾ú°í ÇÑ¹ø ·Î±×ÀÎ ÇÏ¸é °è¼Ó ±× ¾ÆÀÌµğ¸¦ ÅëÇÏ¿© »ç¿ëÇÏ°Ô µË´Ï´Ù.
 	 * @param u User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼ö
-	 * @return 1 ·Î±×ÀÎ °ªÀÌ ÀúÀåµË´Ï´Ù.
 	 */
-	void userLogin(User u) {
+	public void userLogin(User u) {
 		System.out.print("»ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
 		String ID = s.nextLine();
 		System.out.print("»ç¿ëÀÚ PW¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
@@ -152,7 +174,7 @@ public class AdminHandler {
 			if(v.get(i)!=null) {
 				if(ID.equals(v.get(i).getID())&&PW.equals(v.get(i).getPW())) {
 					System.out.println("·Î±×ÀÎ ¼º°ø");
-					LoginCnt = 1;
+					LoginCnt = MenuNum.logIn;
 					
 					break;
 				}			
@@ -166,9 +188,17 @@ public class AdminHandler {
 		}
 		//return v.get(i).LoginCnt;
 	}
+	/**
+	 * LogoutÀº ·Î±×¾Æ¿ôÀ» µ½´Â ÇÔ¼öÀÔ´Ï´Ù.
+	 * ·Î±×¾Æ¿ôÀ» ¿øÇÒ ¶§ ·Î±×¾Æ¿ôÀÌ µÇ¸é¼­ LoginCnt°¡ 0À¸·Î º¯°æµË´Ï´Ù.
+	 * <br>·Î±×ÀÎ¿¡¼­ÀÇ ¿ä±¸ »çÇ×À¸·Î ÀÎÇØ ·Î±×¾Æ¿ô ¶ÇÇÑ ´Ü¼øÈ÷ ·Î±×¾Æ¿ôÀÌ µÇ°í Ä«¿îÅÍ°¡ ³»·Á°¡´Â ¹æ½ÄÀ¸·Î ±¸¼ºÇß½À´Ï´Ù.
+	 * 
+	 */
 	
-
-
+	public void Logout() {
+		System.out.println("·Î±×¾Æ¿ô µÇ¾ú½À´Ï´Ù.");
+		LoginCnt = MenuNum.logOut;
+	}
 	/**
 	 * registerUser´Â È¸¿ø°¡ÀÔÀ» À§ÇÑ ÇÔ¼ö·Î »ç¿ëµË´Ï´Ù.
 	 * <br>sPattern¿¡ ¿µ¹®°ú ¼ıÀÚ¸¸ ÀÔ·Â°¡´ÉÇÑ Á¤±ÔÇ¥Çö½ÄÀ» ÀÔ·ÂÇÏ¿© È£ÃâÇÒ ¼ö ÀÖµµ·Ï Á¤ÀÇÇÏ°í Á¤±ÔÇ¥Çö½ÄÀÌ ¸ÂÁö ¾ÊÀ¸¸é ½ÇÇàÀ» ¸ØÃç 
@@ -188,10 +218,10 @@ public class AdminHandler {
 	 *  <br>¸¶Áö¸·À¸·Î "È¸¿ø µî·ÏÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù."¶ó´Â ¹®±¸¿Í ÇÕ²² "¶Ç ÀÔ·ÂÇÏ½Ã°Ú¾î¿ä? yes..1 no..0"¶ó´Â ¹®±¸°¡ ÇÁ¸°Æ®µÇ°í 0ÀÌ ¾Æ´Ï¸é ´Ù¸¥ ÇÔ¼ö·Î ³Ñ¾î°©´Ï´Ù.
 	 * @param u User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼öÀÇ ¸ğµç ¸Å°³º¯¼ö
 	 */
-	void registerUser(User u) {	
+	public void registerUser(User u) {	
 		
 	      String sPattern = "^[a-zA-Z0-9°¡-ÆR\\s]*$";
-	      int retry = 0;
+	      int retry = MenuNum.no;
 	      boolean regex;
 	      
 	      do {
@@ -229,23 +259,21 @@ public class AdminHandler {
 		            break;
 		         }
 				
-				AdminCheck = 1;
-				
-				//User user = new User(Name, Tel, ID, PW);
+				AdminCheck = MenuNum.num1;
+
 				u.setName(Name);
 				u.setTel(Tel);
 				u.setID(ID);
 				u.setPW(PW);
 				v.add(new User(Name,Tel,ID,PW));
-				//v.add(u);
-				//userCnt++;
+
 				System.out.println("È¸¿ø µî·ÏÀÌ ¿Ï·áµÇ¾ú½À´Ï´Ù.");
 				
 				
 				System.out.println("¶Ç ÀÔ·ÂÇÏ½Ã°Ú¾î¿ä? yes..1 no..0");
 		        retry = s.nextInt();
 		        s.nextLine();
-	      }while(retry!=0);
+	      }while(retry!=MenuNum.no);
 	}
 	
 	/**
@@ -254,18 +282,17 @@ public class AdminHandler {
 	 * À¯ÀúÅ¬·¡½º°¡ nullÀÌ ¾Æ´Ò °æ¿ì ¸ğµç À¯ÀúÀÇ Á¤º¸¸¦ Ãâ·ÂÇÕ´Ï´Ù.
 	 * @param u User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼ö
 	 */
-	void showUser(User u) {
+	
+	public void showUser(User u) {
 		for(int i = 0; i<v.size();i++)
 		{
 			if(v.get(i)!=null )
             {
-				v.get(i).showUser();;
+				v.get(i).showUser();
             }
-			//else 
-				//System.out.println("ÀÔ·ÂµÈ À¯Àú°¡ ¾ø½À´Ï´Ù. »ç¿ëÀÚ¸¦ Ãß°¡ÇØÁÖ¼¼¿ä.");
+
 		}
 	}
-	
 	
 	/**
 	 * findID´Â »ç¿ëÀÚ°¡ ÀÌ¸§À» ÀÔ·ÂÇÏ¿© ¾ÆÀÌµğ¸¦ Ã£´Â ÇÔ¼öÀÔ´Ï´Ù.
@@ -274,7 +301,8 @@ public class AdminHandler {
 	 * <br>ÀúÀåµÇ¾î ÀÖ´ø ÀÌ¸§°ú ÇÔ²² ¾ÆÀÌµğ¸¦ Ãâ·ÂÇÕ´Ï´Ù.
 	 * @param u User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼ö
 	 */
-	void findID(User u) {
+	
+	public void findID(User u) {
 		System.out.print("»ç¿ëÀÚ ÀÌ¸§À» ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
 		String Name = s.nextLine();
 		
@@ -287,7 +315,6 @@ public class AdminHandler {
 			}
 		}
 	}
-	
 	/**
 	 * findPW´Â »ç¿ëÀÚ°¡ ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¿© ÆĞ½º¿öµå¸¦ Ã£´Â ÇÔ¼öÀÔ´Ï´Ù.
 	 * <br>À¯ÀúÅ¬·¡½ºÀÇ i°¡ º¤ÅÍÀ¯Àú»çÀÌÁî¿Í ÀÏÄ¡ÇÒ¶§ ±îÁö ¹İº¹µÇ°í À¯Àú°¡ nullÀÌ ¾Æ´Ñ °æ¿ì 
@@ -295,7 +322,7 @@ public class AdminHandler {
 	 * <br>ÀúÀåµÇ¾î ÀÖ´ø ¾ÆÀÌµğ¿Í ÇÔ²² ÆĞ½º¿öµå¸¦ Ãâ·ÂÇÕ´Ï´Ù.
 	 * @param u User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼ö
 	 */
-	void findPW(User u) {
+	public void findPW(User u) {
 		System.out.print("»ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä : ");
 		String ID = s.nextLine();
 		
@@ -308,7 +335,6 @@ public class AdminHandler {
 			}
 		}
 	}
-	
 	/**
 	 * removeUser´Â À¯Àú°¡ Å»ÅğÇÒ ¼ö ÀÖµµ·Ï ¸¸µé¾î ÁØ ÇÔ¼öÀÔ´Ï´Ù.
 	 * "Á¤¸»·Î Å»ÅğÇÏ½Ã°Ú½À´Ï±î? : Å»Åğ¸é ¾ÆÀÌµğ ÀÔ·Â"¶ó´Â ¹®±¸¸¦ ÇÁ¸°Æ®ÇØ Å»ÅğÇÏ°Ú´Ù°í ÇÏ¸é »ç¿ëÀÚ·Î ºÎÅÍ ¾ÆÀÌµğ¸¦ ÀÔ·Â¹Ş°í
@@ -318,7 +344,8 @@ public class AdminHandler {
 	 * ±×¿Í µ¿½Ã¿¡ LOginCnt¿¡ 0À» ´ëÀÔÇÏ¿© ·Î±×ÀÎÀÌ µÇ¾îÀÖ´ø °ÍÀÌ ·Î±×¾Æ¿ôÀÌ µË´Ï´Ù.
 	 * @param u User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼ö
 	 */
-	void removeUser(User u){
+	
+	public void removeUser(User u){
 		System.out.println("Á¤¸»·Î Å»ÅğÇÏ½Ã°Ú½À´Ï±î? : Å»Åğ¸é ¾ÆÀÌµğ ÀÔ·Â");
 		String ID = s.nextLine();
 		
@@ -330,13 +357,12 @@ public class AdminHandler {
 			else if(ID.equals(v.get(i).getID())) {
 				v.remove(i);
 				System.out.println(ID+"°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.");
-				LoginCnt = 0;
+				LoginCnt = MenuNum.num0;
 					
 			}//else 
 				//System.out.println("ÀÏÄ¡ ¾ÈÇÔ");
 		}
 	}
-	
 	/**
 	 * searchUser´Â »ç¿ëÀÚ°¡ °ü¸®ÀÚ·Î ·Î±×ÀÎÇßÀ» °æ¿ì¿¡ °ü¸®ÀÚ°¡  À¯Àú¸¦ °Ë»öÇÒ ¼ö ÀÖ°Ô ÇÏ±â À§ÇØ ¸¸µç ÇÔ¼öÀÔ´Ï´Ù.
 	 * <br>"°Ë»öÇÒ »ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä"¶ó´Â ¹®±¸°¡ ÇÁ¸°Æ® µÇ¸é »ç¿ëÀÚ°¡ À¯ÀúÀÇ ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØ Áİ´Ï´Ù.
@@ -346,7 +372,8 @@ public class AdminHandler {
 	 *  {@link #showUser(User)}¸¦ ÅëÇØ º¸¿©Áİ´Ï´Ù.
 	 * @param u User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼ö
 	 */
-	void searchUser(User u){
+	
+	public void searchUser(User u){
 		System.out.print("°Ë»öÇÒ »ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä");
 		String ID = s.nextLine();
 		
@@ -358,10 +385,11 @@ public class AdminHandler {
 					v.get(i).showUser();
 					System.out.print(" ÀÔ´Ï´Ù. ");
 				}
+//				else 
+//					System.out.println("¤Ç¤Ì¤Á");
 			}
 		}
 	}
-	
 	/**
 	 * deleteUser´Â »ç¿ëÀÚ°¡ °ü¸®ÀÚ·Î ·Î±×ÀÎÇßÀ» °æ¿ì¿¡ °ü¸®ÀÚ°¡ À¯Àú¸¦ »èÁ¦ÇÏ´Â ÇÔ¼öÀÔ´Ï´Ù.
 	 * <br>"»èÁ¦ÇÒ »ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä :"¶ó´Â ¹®±¸°¡ ÇÁ¸°Æ® µÇ¸é »ç¿ëÀÚ°¡ À¯ÀúÀÇ ¾ÆÀÌµğ¸¦ ÀÔ·ÂÇØ Áİ´Ï´Ù.
@@ -370,7 +398,8 @@ public class AdminHandler {
 	 * <br>ÀúÀåµÇ¾î ÀÖ´ø ¾ÆÀÌµğ¿Í °ü·ÃµÈ ¸ğµç Á¤º¸¸¦ ¹éÅÍ¸¦ ÅëÇØ Áö¿öÁİ´Ï´Ù.
 	 * @param u User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼ö
 	 */
-	void deleteUser(User u) {
+	
+	public void deleteUser(User u) {
 		System.out.print("»èÁ¦ÇÒ »ç¿ëÀÚ ID¸¦ ÀÔ·ÂÇØÁÖ¼¼¿ä :");
 		String ID = s.nextLine();
 		
@@ -382,19 +411,34 @@ public class AdminHandler {
 				else if(ID.equals(v.get(i).getID())) {
 						v.remove(i);
 						System.out.println(ID+"°¡ »èÁ¦µÇ¾ú½À´Ï´Ù.");
-
-				}
+						//userCnt--;
+						//LoginCnt = MenuNum.num0;
+				}//else 
+					//System.out.println("ÀÏÄ¡ ¾ÈÇÔ");
 			}
 		}
-	
 	/**
 	 * sortUser´Â »ç¿ëÀÚ°¡ °ü¸®ÀÚ·Î ·Î±×ÀÎÇßÀ» °æ¿ì¿¡ °ü¸®ÀÚ°¡ À¯Àú¸ñ·ÏÀ» Á¤·ÄÇÒ¶§ »ç¿ëÇÏ´Â ÇÔ¼ö ÀÔ´Ï´Ù.
 	 * <br>º¤Å×¹è¿­ÀÇ sort¸¦ ÅëÇÏ¿© ¹è¿­À» Á¤·ÄÇØÁİ´Ï´Ù.
 	 * <br>i°¡ º¤ÅÍÀ¯Àú»çÀÌÁî¿Í ÀÏÄ¡ÇÒ¶§ ±îÁö ¹İº¹µÇ°í {@link #showUser(User)}¸¦ ÅëÇÏ¿© 
 	 * @param u User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼ö
 	 */
-	void sortUser(User u) {
+	
+	public void sortUser(User u) {
 		System.out.println("À¯Àú¸ñ·ÏÀ» Á¤·ÄÇÕ´Ï´Ù.");
+//		 for(int i = 0; i<v.size();i++)
+//         {
+//         if(v.get(i)==null )
+//            {
+//               u.setName("a"+i);
+//               u.setTel("010"+i);
+//               u.setID("user"+(i+1));
+//               u.setPW("user"+(i+1));
+//               v.add(u);
+//               System.out.println("»ı¼ºÀÚ¸¦ Ãß°¡ÇÏ¿´½À´Ï´Ù.");
+//            } 
+//         }
+//		 
 		Collections.sort(v);
 		
 		for(int i = 0; i < v.size();i++)
@@ -415,30 +459,31 @@ public class AdminHandler {
 	 * 
 	 * User À¯ÀúÅ¬·¡½º¿Í À¯ÀúÅ¬·¡½º¸¦ »ó¼Ó¹ŞÀº Admin Å¬·¡½º¿Í EmployeeÅ¬·¡½ºÀÇ ¸ğµç ¸Å°³º¯¼ö
 	 */
-	void readingRoomUse() {
-		System.out.println("¸î ¹ø ÁÂ¼®À» »ç¿ëÇÏ½Ã°Ú½À´Ï±î ?");
-		int num = s.nextInt();//ÁÂ¼®¼±ÅÃ
 	
+	public void readingRoomUse() {
+	      System.out.println("¸î ¹ø ÁÂ¼®À» »ç¿ëÇÏ½Ã°Ú½À´Ï±î ?");
+	      int num = s.nextInt();//ÁÂ¼®¼±ÅÃ
+	   
 
-			if(rent.room[num-1]==0) {//¹è¿­Àº 0ºÎÅÍ ½ÃÀÛÀÌ¹Ç·Î ÀÔ·Â°ª-1À» ÇØÁà¾ß ±× ¹æÀ¸·Î µé¾î°¨
-				System.out.println("ÇØ´ç ÁÂ¼®Àº »ç¿ë°¡´ÉÇÕ´Ï´Ù. ÇØ´ç ÁÂ¼®À» »ç¿ëÇÏ°Ú½À´Ï±î? yes..1, no..0");
-				int checkNum = s.nextInt();
-					if(checkNum==1) {
-						System.out.println("ÇØ´ç ÁÂ¼®À» »ç¿ëÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
-						rent.room[num-1] = 1;
-						secToHHMMSS();//Å¸ÀÌ¸ÓÇÔ¼ö È£Ãâ
-						
-						}
-					else if(checkNum == 0) {
-						System.out.println("ÇØ´ç ÁÂ¼®À» »ç¿ëÇÏ½Ç ¼ö ¾ø½À´Ï´Ù. ´Ù¸¥ ÁÂ¼®À» ¼±ÅÃÇØ ÁÖ¼¼¿ä."); 
-						}else
-							System.out.println("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ¼±ÅÃÇØ ÁÖ¼¼¿ä"); 
-			}else if(rent.room[num-1]==1) {
-				System.out.println("ÇØ´ç ÁÂ¼®Àº »ç¿ëÁßÀÔ´Ï´Ù.");
-			}else
-				System.out.println("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ¼±ÅÃÇØ ÁÖ¼¼¿ä");
-		
-	}
+	         if(rent.room[num-1]==MenuNum.vacant) {//¹è¿­Àº 0ºÎÅÍ ½ÃÀÛÀÌ¹Ç·Î ÀÔ·Â°ª-1À» ÇØÁà¾ß ±× ¹æÀ¸·Î µé¾î°¨
+	            System.out.println("ÇØ´ç ÁÂ¼®Àº »ç¿ë°¡´ÉÇÕ´Ï´Ù. ÇØ´ç ÁÂ¼®À» »ç¿ëÇÏ°Ú½À´Ï±î? yes..1, no..0");
+	            int checkNum = s.nextInt();
+	               if(checkNum==MenuNum.yes) {
+	                  System.out.println("ÇØ´ç ÁÂ¼®À» »ç¿ëÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.");
+	                  rent.room[num-1] = 1;
+	                  //secToHHMMSS();//Å¸ÀÌ¸ÓÇÔ¼ö È£Ãâ
+	                  
+	                  }
+	               else if(checkNum == MenuNum.no) {
+	                  System.out.println("ÇØ´ç ÁÂ¼®À» »ç¿ëÇÏ½Ç ¼ö ¾ø½À´Ï´Ù. ´Ù¸¥ ÁÂ¼®À» ¼±ÅÃÇØÁÖ¼¼¿ä."); 
+	                  }else
+	                     System.out.println("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ¼±ÅÃÇØ ÁÖ¼¼¿ä"); 
+	         }else if(rent.room[num-1]==1) {
+	            System.out.println("ÇØ´ç ÁÂ¼®Àº »ç¿ëÁßÀÔ´Ï´Ù.");
+	         }else
+	            System.out.println("Àß¸øµÈ ÀÔ·ÂÀÔ´Ï´Ù. ´Ù½Ã ¼±ÅÃÇØ ÁÖ¼¼¿ä");
+	      
+	   }
 
 	/**
 	 * secToHHMMSS()´Â µ¶¼­½ÇÀÇ Å¸ÀÌ¸Ó¸¦ À§ÇÑ ½Ã½ºÅÛ ÇÔ¼öÀÔ´Ï´Ù.
@@ -449,38 +494,35 @@ public class AdminHandler {
 	 * "ÇöÀç ½Ã°¢Àº " + currentTime+"ÀÔ´Ï´Ù."¶ó°í ÇÁ¸°Æ® ÇÏ¿© ÇöÀç ½Ã°¢À» º¸¿©ÁÖ°í
 	 * "ÀÌ¿ë°¡´ÉÇÑ ½Ã°¢Àº " + finishTime+"±îÁö ÀÔ´Ï´Ù."¶ó°í ÇÁ¸°Æ®ÇÏ¿© »ç¿ë °¡´É ½Ã°¢À» º¸¿©Áİ´Ï´Ù.
 	 * TimerTask¸¦ È£ÃâÇÏ¿© run()ÀÌ ½ÃÀÛµÇ´Â µ¿¾È count¸¦ 1¾¿ ´õÇØÁİ´Ï´Ù.
-	 * i°¡ r1ÀÇ ±æÀÌ°¡ µÇ´Â µ¿¾È±îÁö timer.schedule(timerTask, 0, 3600000)¸¦ ¶æÇÏ´Â ¹®ÀåÀÌ 60ºĞÀ» ÀÇ¹ÌÇÏ±â ¶§¹®¿¡
-	 *  count°¡ 2¹ø ½ÇÇàµÇµµ·ÏÇÏ¿© 120ºĞÀ» ¼³Á¤ÇÏ°í ½ÇÇàÀÌ ³¡³ª¸é rent.room[i]°¡ 0ÀÌ µÇ¸é¼­ Å¸ÀÌ¸Ó°¡ Á¾·áµË´Ï´Ù.
+	 * i°¡ r1ÀÇ ±æÀÌ°¡ µÇ´Â µ¿¾È±îÁö timer.schedule(timerTask, 0, 1800000)¸¦ ¶æÇÏ´Â ¹®ÀåÀÌ 30ºĞÀ» ÀÇ¹ÌÇÏ±â ¶§¹®¿¡
+	 *  count°¡ 4¹ø ½ÇÇàµÇµµ·ÏÇÏ¿© 120ºĞÀ» ¼³Á¤ÇÏ°í ½ÇÇàÀÌ ³¡³ª¸é rent.room[i]°¡ 0ÀÌ µÇ¸é¼­ Å¸ÀÌ¸Ó°¡ Á¾·áµË´Ï´Ù.
 	 */
-	void secToHHMMSS() {
-		cal.setTime(date);//Date °´Ã¼¸¦ 1970 ³â 1 ¿ù 1 ÀÏ 00:00:00 UTCºÎÅÍ ¹Ğ¸® ÃÊ ´ÜÀ§·Î ³ªÅ¸³»´Â ½Ã°£À¸·Î ¼³Á¤ÇÕ´Ï´Ù.
-		cal.add(Calendar.MINUTE, 120);//cal °´Ã¼ÀÇ MINUTE¸¦ 120ºĞ Ãß°¡ÇÔ = 2½Ã°£ ´Ã¸²
-		String currentTime = dateFormat.format(new Date());//ÇöÀç½Ã°£À» ¹®ÀÚ¿­·Î ÃÊ±âÈ­
-		String finishTime = dateFormat.format(cal.getTime());//120ºĞ Ãß°¡ÇÑ cal °´Ã¼¸¦ ¹®ÀÚ¿­·Î ÃÊ±âÈ­
-		
-		System.out.println("ÇöÀç ½Ã°£Àº " + currentTime+"ÀÔ´Ï´Ù.");
-		System.out.println("ÀÌ¿ë°¡´ÉÇÑ ½Ã°£Àº " + finishTime+"±îÁö ÀÔ´Ï´Ù.");
-				
-		TimerTask timerTask = new TimerTask() {//Timer Å¬·¡½º°¡ ¼öÇàÇÒ ÀÛ¾÷À» ³ªÅ¸³½´Ù.
-			@Override
-			public void run() {
-				count++;
-				for(int i = 0; i<rent.room.length;i++)
-				{
-					if(count<2) {//2¹ø ½ÇÇà
-					}else {
-						rent.room[i] = 0;//2¹ø ½ÇÇà³¡³ª¸é 0À¸·Î ÃÊ±âÈ­ÇÏ¿© Àç»ç¿ë°¡´É
-						timer.cancel();//Å¸ÀÌ¸Ó Á¾·á
-					}
-					
-				}
-			}
-		
-		};
-		timer.schedule(timerTask, 0, 3600000);//60ºĞµ¿¾È Å¸ÀÌ¸Ó¸¦ ½ÇÇà
-											  // 60*2 = 120ÀÌ¹Ç·Î 4¹ø ½ÇÇàÈÄ Å¸ÀÌ¸Ó¸¦ Á¾·á½ÃÅ²´Ù.
-	}
-	
+	public void secToHHMMSS() {
+	      cal.setTime(date);//Date °´Ã¼¸¦ 1970 ³â 1 ¿ù 1 ÀÏ 00:00:00 UTCºÎÅÍ ¹Ğ¸® ÃÊ ´ÜÀ§·Î ³ªÅ¸³»´Â ½Ã°£À¸·Î ¼³Á¤ÇÕ´Ï´Ù.
+	      cal.add(Calendar.MINUTE, 120);//cal °´Ã¼ÀÇ MINUTE¸¦ 120ºĞ Ãß°¡ÇÔ = 2½Ã°£ ´Ã¸²
+	      String currentTime = dateFormat.format(new Date());//ÇöÀç½Ã°£À» ¹®ÀÚ¿­·Î ÃÊ±âÈ­
+	      String finishTime = dateFormat.format(cal.getTime());//120ºĞ Ãß°¡ÇÑ cal °´Ã¼¸¦ ¹®ÀÚ¿­·Î ÃÊ±âÈ­
+	      
+	      System.out.println("ÇöÀç ½Ã°¢Àº " + currentTime+"ÀÔ´Ï´Ù.");
+	      System.out.println("ÀÌ¿ë°¡´ÉÇÑ ½Ã°¢Àº " + finishTime+"±îÁö ÀÔ´Ï´Ù.");
+	            
+	      TimerTask timerTask = new TimerTask() {//Timer Å¬·¡½º°¡ ¼öÇàÇÒ ÀÛ¾÷À» ³ªÅ¸³½´Ù.
+	         @Override
+	         public void run() {
+	            count++;
+	            for(int i = 0; i<r1.length;i++)
+	            {
+	               if(count<4) {//4¹ø ½ÇÇà
+	               }else {
+	                  rent.room[i] = 0;//4¹ø ½ÇÇà³¡³ª¸é 0À¸·Î ÃÊ±âÈ­ÇÏ¿© Àç»ç¿ë°¡´É
+	                  timer.cancel();//Å¸ÀÌ¸Ó Á¾·á
+	               }
+	               
+	            }
+	         }
+	      
+	      };
+	      timer.schedule(timerTask, 0, 1800000);//30ºĞµ¿¾È Å¸ÀÌ¸Ó¸¦ ½ÇÇà
+	                                   // 30*4 = 120ÀÌ¹Ç·Î 4¹ø ½ÇÇàÈÄ Å¸ÀÌ¸Ó¸¦ Á¾·á½ÃÅ²´Ù.
+	   }
 }
-
-

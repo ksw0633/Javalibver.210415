@@ -1,4 +1,5 @@
-package cproject;
+
+package cproject1;
 
 /**
  * 
@@ -10,28 +11,36 @@ package cproject;
  */
 
 public class User implements Comparable<User> {
-	/**
-	 * @private Name 이름
-	 * */
+	 /**
+	  * Name 이름
+	  */
+	
 	private String Name;
-	/** @private Tel 전화번호 
-	 * */
+	/**
+	 * Tel 전화번호
+	 */  
 	private String Tel;
-	/** 
-	 * @private ID 아이디
+	/**
+	 * ID 유저아이디 
 	 */
 	private String ID;
+	
 	/**
-	 * @private PW 패스워드
+	 *PW 패스워드 
 	 */
+
+	
 	private String PW;
+	
 	/**
-	 * @private Overdue 연체기간
+	 * Overdue 
 	 */
 	private int Overdue;
 
+	
 	/**
 	 * 디폴트 생성자
+	 * @see #User(String, String, String, String)
 	 * */
 	public User(){}
 	/**
@@ -76,8 +85,25 @@ public class User implements Comparable<User> {
 	}
 	/**
 	 *  입력했던 아이디를 리턴해 줍니다.
-	 * @return Name 이름
+	 * @return Overdue 
 	 */
+	
+	   public int getOverdue() {
+		      return Overdue;
+		   }
+	   /**
+	    * ??
+	    * @param Overdue
+	    */
+
+	public void setOverdue(int Overdue) {
+		    this.Overdue = Overdue;
+	}
+	/**
+	 * 입력했던 이름을 리턴해 줍니다.
+	 * @return
+	 */
+
 	public String getName() {
 		return Name;
 	}
@@ -137,13 +163,5 @@ public class User implements Comparable<User> {
 	//정보은닉- 켑슐화
 	//user.getID();//((User)v.get(0)).getID() 다운캐스팅
 	//((User)v.get(0)).getID();
-	 public int getOverdue() {
-	      return Overdue;
-	   }
-
-	   public void setOverdue(int Overdue) {
-	      this.Overdue = Overdue;
-	   }
-
 
 }

@@ -1,9 +1,13 @@
-package cproject;
-/** 
- * 이 클래스는 도서 관리 시스템의 관리자 클래스입니다.
+package cproject1;
+/**
+ *  
+ * 이 클래스는 도서 관리 시스템의 관리자 클레스입니다.
  * <br> 관리자 클래스는 유저를 상속받아 사용하는 클래스 입니다.
  * <br> 도서 관리 시스템의 Entity class에 속합니다.
- * */
+ * 
+ * @author SHY-702-04
+ *
+ */
 public class Admin extends User{
 	/**
 	 * @param AdminCheck 관리자가 맞는지 아닌지 확인합니다.
@@ -29,8 +33,9 @@ public class Admin extends User{
 	}
 	/**
 	 * {@link showUser}를 통하여 유저 정보를 출력할 수 있고 관리자 여부를 확인합니다.
+	 * 프린트 값으로 관리자 여부를 확인한다. 
 	 */
-	void showAdmin() {
+	public void showAdmin() {
 		super.showUser();
 		System.out.println("관리자 여부 : "+this.AdminCheck);
 		System.out.println();
@@ -50,6 +55,6 @@ public class Admin extends User{
 	 */
 	public String getPW(String PW) {
 		return PW;
-	}//정보은닉- 캡슐화
+	}//정보은닉- 켑슐화
 	
 }
